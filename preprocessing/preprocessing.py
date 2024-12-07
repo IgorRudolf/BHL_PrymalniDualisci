@@ -112,3 +112,12 @@ class GroupByAggregator(BaseEstimator, TransformerMixin):
         # but we can interpret this as 0
         
         return aggregated
+
+class FilterByDaylight(BaseEstimator, TransformerMixin):
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X):
+        X_filtered = X[(X['Hour'] >= X['TimeSunRise_first']) & (X['Hour'] <= X['TimeSunSet_first'])]
+        
+        return X_filtered
