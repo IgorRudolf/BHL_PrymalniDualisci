@@ -1,4 +1,4 @@
-# ☀️ Solar Panel Financial Results Calculator
+# ☀️ Solar Money
 
 **Authors:**  
 Michał Piechota, Kacper Rodziewicz, Igor Rudolf, Gaspar Sekula
