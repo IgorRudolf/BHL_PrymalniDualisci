@@ -1,68 +1,46 @@
-# ☀️ Solar Radiation Prediction Project
+# ☀️ Solar Panel Financial Results Calculator
 
-Welcome to our Solar Radiation Prediction project! This repository contains the implementation of data preprocessing, feature engineering, and modeling to predict solar radiation using meteorological data. 🌤️
+**Authors:**  
+Michał Piechota, Kacper Rodziewicz, Igor Rudolf, Gaspar Sekula
 
-## 📋 Table of Contents
-- 🎯 **Business Objective**
-- 📊 **Dataset**
-- 🛠️ **Preprocessing & Feature Engineering**
-- 🤖 **Models**
-- 📈 **Results**
-- 📝 **Conclusions**
+## 📜 Project Overview
 
----
+This project aims to assist solar panel resellers and customers in understanding the economic benefits of solar energy investments. By leveraging a dataset of meteorological conditions and applying data preprocessing, feature engineering, and predictive modeling, we provide a user-friendly tool for estimating potential energy yield and financial savings.
 
-## 🎯 Business Objective
-Our goal is to assist solar panel resellers in reaching more clients by predicting solar radiation efficiently, emphasizing the financial benefits of solar energy. 💡
+Our solution focuses on simplifying complex energy data into clear, actionable insights. This empowers resellers to confidently present the financial advantages of solar power, thereby increasing customer engagement and accelerating the adoption of renewable energy solutions.
 
----
+## 🗄️ Data and Preprocessing
 
-## 📊 Dataset
-We used meteorological data collected from the HI-SEAS weather station during September to December 2016. Key features include:
-- **Solar radiation** (target variable, W/m²)
-- **Temperature**, **Humidity**, **Wind Speed**, **Pressure**
-- **Sunrise** and **Sunset times**
+- **Dataset**: Meteorological data from the HI-SEAS station (September–December 2016).
+- **Variables**: Includes solar radiation (W/m²), temperature (°F), humidity (%), wind direction (°), wind speed (mph), and related temporal features.
+- **Preprocessing Steps**:
+  - Conversion of date/time features into structured temporal variables (day, month, hour).
+  - Aggregation by day, month, and hour to compute mean, min, max, and standard deviation for temperature, pressure, humidity, wind speed, and direction.
+  - Calculation of sunrise/sunset durations and advanced engineered features (e.g., sinusoidal transformations for time and wind direction, proportion of daylight, and various interaction terms).
+  - Removal of features causing multicollinearity to ensure stable and interpretable model coefficients.
 
----
+After preprocessing, the resulting dataset contains a well-defined set of predictive features, ready for modeling.
 
-## 🛠️ Preprocessing & Feature Engineering
-### Preprocessing Steps:
-1. 🗓️ **Date Features**: Extracted `Day`, `Month`, and `Hour` from datetime columns.
-2. 🌅 **Sunlight Features**: Calculated `SunDurationMinutes` (sunrise to sunset duration).
-3. 📊 **Aggregation**: Grouped by `Day`, `Month`, and `Hour` and computed:
-   - Mean, min, max, std for **Temperature**, **Pressure**, **Humidity**, **Wind Speed**
-   - Mean solar radiation (target)
-4. 🔍 **Redundant Columns**: Removed unnecessary columns (`UNIXTime`).
+## 💡 Key Financial Parameters
 
-### Feature Engineering Highlights:
-- 📈 **Proportion of Day**: `(Hour - TimeSunRise) / (TimeSunSet - TimeSunRise)`
-- 🌡️ **Temperature Amplitude**: `Temperature_max - Temperature_min`
-- 🌬️ **Wind Energy**: `Speed_mean^2`
-- 🔄 **Cyclic Features**: Applied sinusoidal transformations (`Hour`, `Wind Direction`).
-- 🌤️ **Time to Noon**: Captured solar noon proximity.
+- **Electricity Price**: 1.52 PLN/kWh  
+- **Panel Efficiency**: 0.15–0.20  
+- **Panel Area**: A = 1.7 m²  
+- **Predicted Irradiance (I)**: Derived from our regression model
 
----
+Using predicted irradiance, panel efficiency, and surface area, we estimate the annual energy yield and translate it into monetary savings. This makes it easier for potential buyers to weigh the long-term financial benefits of installing solar panels.
 
-## 🤖 Models
-We implemented and evaluated linear regression models using:
-- 🚀 **Feature Selection**: Used AIC/BIC criteria for optimal predictors.
-- 📉 **Residual Analysis**: Diagnosed and addressed model assumptions (e.g., linearity, homoscedasticity).
-- 🔧 **Weighted Regression**: Applied WLS to handle heteroskedasticity.
+## 🤖 Modeling Approach
 
----
+We explored several regression techniques to predict average solar radiation:
+- Linear regression with feature engineering
+- Consideration of cyclic and interaction features to capture complex relationships
+- Final selection of features to ensure model stability and interpretability
 
-## 📈 Results
-Our optimized model predicts solar radiation accurately, and the engineered features significantly improve performance. Detailed results and visualizations are available in the report. 📊
+The resulting model aims to provide accurate estimates of solar radiation, serving as a core input for financial calculations.
 
----
+## 🚀 Getting Started
 
-## 📝 Conclusions
-This project demonstrates how feature engineering and thoughtful preprocessing can enhance predictive modeling for solar radiation, supporting informed decisions for solar energy applications. 🌍
-
----
-
-## 💾 How to Run
-1. Clone the repo:
+1. **Clone the repository**:  
    ```bash
-   git clone https://github.com/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/your-username/solar-finance-calculator.git
