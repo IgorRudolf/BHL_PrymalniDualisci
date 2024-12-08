@@ -33,9 +33,18 @@ Using predicted irradiance, panel efficiency, and surface area, we estimate the 
 ## 🤖 Modeling Approach
 
 We explored several regression techniques to predict average solar radiation:
-- Linear regression with feature engineering
-- Consideration of cyclic and interaction features to capture complex relationships
-- Final selection of features to ensure model stability and interpretability
+
+- **Feature Selection & Dimensionality Reduction:**  
+   Used MRMR to rank features and tested top subsets (5, 10, …, 35). Additionally, applied t-tests, AIC, and BIC criteria to refine predictors, ensuring theoretical assumptions (e.g., normal residuals) for linear models were met.
+
+- **Model Variants:**  
+   Explored classical Linear Regression (with stringent assumption checks), LASSO, RIDGE, XGBoost, Neural Networks, and other regression techniques. Tuned hyperparameters extensively to optimize performance.
+
+- **Performance Metrics & Validation:**  
+   Evaluated models using R² and MRE, balancing accuracy with model complexity. The best traditional approach achieved ~0.9 R².
+
+- **AutoML Integration:**  
+   Leveraged AutoGluon for automated model selection and tuning, reaching ~0.95 R², surpassing manual optimization efforts.
 
 The resulting model aims to provide accurate estimates of solar radiation, serving as a core input for financial calculations.
 
@@ -43,4 +52,5 @@ The resulting model aims to provide accurate estimates of solar radiation, servi
 
 1. **Clone the repository**:  
    ```bash
-   git clone https://github.com/your-username/solar-finance-calculator.git
+   git clone https://github.com/IgorRudolf/BHL_PrymalniDualisci.git
+   
